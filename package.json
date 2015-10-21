@@ -1,0 +1,24 @@
+{
+  "name": "pusher-twitter-streamer",
+  "version": "0.1.0",
+  "description": "Get tweets and trigger Pusher events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "contributors": [
+    {
+      "name": "Phil Leggetter"
+    },
+    {
+      "name": "Jack Franklin"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "lodash": "^3.10.1",
+    "pusher": "^1.0.6",
+    "twit": "^2.1.0"
+  }
+}
