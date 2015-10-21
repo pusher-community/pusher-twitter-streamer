@@ -5,7 +5,7 @@ A small tool that takes tweets from the Twitter stream and triggers Pusher event
 ## Prerequisites
 
 - a [Twitter application](https://apps.twitter.com/) 
-- a free [Pusher account](https://www.pusher.com/signup)
+- a [free Pusher account](https://www.pusher.com/signup)
 
 ## Usage
 
