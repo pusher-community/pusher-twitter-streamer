@@ -2,11 +2,11 @@
 
 A small tool that takes tweets from the Twitter stream and triggers Pusher events.
 
-```
+```bash
 npm install --save pusher-twitter-streamer
 ```
 
-```
+```js
 var Streamer = require('pusher-twitter-streamer');
 var streamer = new Streamer({
   twitter: {
