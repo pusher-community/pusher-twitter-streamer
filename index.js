@@ -6,7 +6,6 @@ var _ = require('lodash');
 var Streamer = function(config) {
   this.twitterConfig = config.twitter;
   this.pusherConfig = config.pusher;
-
   this.streamRetryCount = 0;
   this.streamRetryLimit = 10;
   this.streamRetryDelay = 1000;
@@ -24,7 +23,6 @@ Streamer.prototype.stream = function(/*keywords*/) {
   var keywords = Array.prototype.slice.call(arguments).join(',');
   var twitter = this._createTwitter();
   this.stream = twitter.stream('statuses/filter', { track: keywords });
-
 
   this.log('Stream started. Waiting for tweets...');
 
@@ -75,8 +73,8 @@ Streamer.prototype.restartStream = function() {
 
 Streamer.prototype.processTweet = function(tweet) {
   var sendData = this.publishFilter(tweet);
-  if (!sendData) {
-    this.log('Tweet triggered');
+  if (sendData) {
+    this.log('Tweet triggered', this.pusherConfig.channelName, this.pusherConfig.eventName);
     this.pusher.trigger(this.pusherConfig.channelName, this.pusherConfig.eventName, sendData);
   }
 };
