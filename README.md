@@ -39,3 +39,7 @@ streamer.stream('javascript', 'ruby', 'python');
 Not all tweets that match the filter are sent to Pusher by default, we filter to only include English tweets. Additionally, we only push a subset of the tweet data to the client.
 
 If you'd like to overrride this, you should redefine `Streamer.prototype.publishFilter`. This is expected to return `undefined` if you do not wish to use that tweet, or an object representing the tweet if you do.
+
+## Fake Stream
+
+The Twitter streamer also has a file with ~3000 tweets that it can send to you at the rate of 1 a second, for those times when the internet is failing during your demo. To do this replace the call to `streamer.stream` with `streamer.streamFake()`.

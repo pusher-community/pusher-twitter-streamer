@@ -1,6 +1,6 @@
 {
   "name": "pusher-twitter-streamer",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Get tweets and trigger Pusher events",
   "main": "index.js",
   "scripts": {
