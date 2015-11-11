@@ -19,6 +19,7 @@ Streamer.prototype.log = function(/*keywords*/) {
 }
 
 Streamer.prototype.streamFake = function(index) {
+  this.pusher = this._createPusher();
   var tweets = require('./tweets.json');
   var tweetIndex = index || 0;
   if (tweetIndex < tweets.length) {
@@ -101,11 +102,17 @@ Streamer.prototype.publishFilter = function(tweet) {
 }
 
 Streamer.prototype._createPusher = function() {
-  return new Pusher({
-    appId: this.pusherConfig.appId,
-    key: this.pusherConfig.appKey,
-    secret: this.pusherConfig.appSecret,
-  });
+  if (this._pusherInstance) {
+    return this._pusherInstance;
+  } else {
+    this._pusherInstance = new Pusher({
+      appId: this.pusherConfig.appId,
+      key: this.pusherConfig.appKey,
+      secret: this.pusherConfig.appSecret,
+    });
+
+    return this._pusherInstance;
+  }
 }
 
 Streamer.prototype._createTwitter = function() {
