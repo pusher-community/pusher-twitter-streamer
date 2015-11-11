@@ -2,6 +2,7 @@ var Twit = require('twit');
 var Pusher = require('pusher');
 var chalk = require('chalk');
 var _ = require('lodash');
+var fs = require('fs');
 
 var Streamer = function(config) {
   this.twitterConfig = config.twitter;
@@ -15,6 +16,17 @@ var Streamer = function(config) {
 Streamer.prototype.log = function(/*keywords*/) {
   var args = Array.prototype.slice.call(arguments);
   console.log.apply(console, [chalk.blue('streamer-debug')].concat(args));
+}
+
+Streamer.prototype.streamFake = function(index) {
+  var tweets = require('./tweets.json');
+  var tweetIndex = index || 0;
+  if (tweetIndex < tweets.length) {
+    this.processTweet(tweets[tweetIndex]);
+    setTimeout(function() {
+      this.streamFake(++tweetIndex);
+    }.bind(this), 5000);
+  }
 }
 
 Streamer.prototype.stream = function(/*keywords*/) {
@@ -75,6 +87,7 @@ Streamer.prototype.processTweet = function(tweet) {
   var sendData = this.publishFilter(tweet);
   if (sendData) {
     this.log('Tweet triggered', this.pusherConfig.channelName, this.pusherConfig.eventName);
+
     this.pusher.trigger(this.pusherConfig.channelName, this.pusherConfig.eventName, sendData);
   }
 };

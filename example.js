@@ -15,4 +15,5 @@ var streamer = new Streamer({
   },
 });
 
-streamer.stream('javascript', 'ruby', 'python');
+// streamer.stream('javascript', 'ruby', 'python', 'php', 'elm', 'html', 'css', 'clojure', 'clojurescript');
+streamer.streamFake(0);
